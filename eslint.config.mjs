@@ -4,5 +4,5 @@ import { defineConfig } from "eslint/config";
 import jest from "eslint-plugin-jest";
 
 export default defineConfig([
-  { files: ["**/*.{js,mjs,cjs,test.js}"], plugins: { js, jest }, extends: ["js/recommended"], languageOptions: { globals: globals.jest} },
+  { files: ["**/*.{js,mjs,cjs,test.js}"],  ignores: ["dist/", "build/", "*.min.js", "temp/", "webpack.config.js"], plugins: { js, jest }, extends: ["js/recommended"], languageOptions: { globals: globals.jest} },
 ]);
