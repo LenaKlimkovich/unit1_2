@@ -1,7 +1,7 @@
 import sortByHealth from "../basic";
 
 test("sortByHealth basic", () => {
-    const input = [
+    var input = [
   {name: 'мечник', health: 10},
   {name: 'маг', health: 100},
   {name: 'лучник', health: 80},
@@ -11,4 +11,5 @@ test("sortByHealth basic", () => {
   {name: 'лучник', health: 80},
   {name: 'мечник', health: 10},
 ]);})
+
 
