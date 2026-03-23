@@ -1,17 +1,59 @@
+
 import js from "@eslint/js";
 import globals from "globals";
 import { defineConfig } from "eslint/config";
-import jest from "eslint-plugin-jest";
-import eslint from '@eslint/js';
+import jestPlugin from "eslint-plugin-jest";
 
 export default defineConfig([
-  { files: ["**/*.{js,mjs,cjs,test.js}"],  ignores: ["dist/", "build/", "*.min.js", "temp/", "webpack.config.js", "coverage/", "docs/"], plugins: { js, jest }, extends: ["js/recommended"], languageOptions: { globals: globals.browser}, rules: {
-    "quotes": ["error", "double"],
-    "indent": ["error", 2],
-    "space-infix-ops": ["error", { "int32Hint": false }], 
-    "eol-last": ["error", "always"],
-    "semi": "error", 
-    "prefer-const": "warn", 
-  } },
+  {
+    ignores: [
+      "coverage/**",
+      "dist/**",
+      "build/**",
+      "temp/**",
+      "*.min.js",
+      "webpack.config.js"
+    ]
+  },
+  {
+    files: ["**/*.{js,mjs,cjs}"],
+    languageOptions: {
+      globals: {
+        ...globals.browser,
+        ...globals.node,
+      },
+    },
+    plugins: {
+      js,
+    },
+    extends: [js.configs.recommended],
+    rules: {
+      quotes: ["error", "double"],
+      indent: ["error", 2],
+      "space-infix-ops": ["error", { int32Hint: false }],
+      "eol-last": ["error", "always"],
+      semi: "error",
+      "prefer-const": "warn",
+    },
+  },
+  {
+    files: ["**/__tests__/**/*.js", "**/*.test.js"],
+    plugins: {
+      jest: jestPlugin,
+    },
+    languageOptions: {
+      globals: {
+        ...globals.jest,
+      },
+    },
+    rules: {
+      ...jestPlugin.configs.recommended.rules,
+      "quotes": ["error", "double"],
+      "indent": ["error", 2],
+      "space-infix-ops": ["error", { "int32Hint": false }], 
+      "eol-last": ["error", "always"],
+      "semi": "error", 
+      "prefer-const": "warn", 
+    }
+  },
 ]);
-
