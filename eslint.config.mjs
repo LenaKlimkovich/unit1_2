@@ -6,8 +6,12 @@ import eslint from '@eslint/js';
 
 export default defineConfig([
   { files: ["**/*.{js,mjs,cjs,test.js}"],  ignores: ["dist/", "build/", "*.min.js", "temp/", "webpack.config.js", "coverage/", "docs/"], plugins: { js, jest }, extends: ["js/recommended"], languageOptions: { globals: globals.browser}, rules: {
-      "semi": "error", 
-      "prefer-const": "warn"
-    } },
+    "quotes": ["error", "double"],
+    "indent": ["error", 2],
+    "space-infix-ops": ["error", { "int32Hint": false }], 
+    "eol-last": ["error", "always"],
+    "semi": "error", 
+    "prefer-const": "warn", 
+  } },
 ]);
 
